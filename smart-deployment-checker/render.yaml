@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: smart-deployment-checker
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_PATH
+        value: /tmp/smart-deployment-checker.db
+      - key: INFRA_MODE
+        value: sandbox
